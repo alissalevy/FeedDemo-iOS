@@ -1,0 +1,4 @@
+source 'https://github.com/CocoaPods/Specs.git'
+source 'git@github.com:applicaster/CocoaPods.git'
+
+pod 'APFeed', '= 3.5.1'

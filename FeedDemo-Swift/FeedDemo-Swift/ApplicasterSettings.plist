@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>APAccountID</key>
+	<string>100</string>
+	<key>APBucketID</key>
+	<string>52bfe81b8930ee944b02eccb</string>
+	<key>APAccountsAccountID</key>
+	<string>52bfe7b5c3ef0b49c2000034</string>
+	<key>APCurrentLanguage</key>
+	<string>en</string>
+    <key>APLegacyLocalizations</key>
+    <true/>
+</dict>
+</plist>

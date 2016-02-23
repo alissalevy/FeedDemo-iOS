@@ -12,7 +12,8 @@
 		1D3525311C7356A8004DB5B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D3525301C7356A8004DB5B5 /* Assets.xcassets */; };
 		1D3525341C7356A8004DB5B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D3525321C7356A8004DB5B5 /* LaunchScreen.storyboard */; };
 		1D37AAE31C7C6CB3009C3844 /* APFeedDemoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D37AAE21C7C6CB3009C3844 /* APFeedDemoTableViewController.swift */; };
-		BBA44EE0702D4649F0DDC7D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD734CC16AB3629E1B408F00 /* libPods.a */; };
+		1D37AAF41C7CBA52009C3844 /* ApplicasterSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D37AAF31C7CBA52009C3844 /* ApplicasterSettings.plist */; };
+		65438562C744E59324E32D0E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E95C8DF1B12EBAB9A0223736 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,10 +24,11 @@
 		1D3525301C7356A8004DB5B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D3525331C7356A8004DB5B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D3525351C7356A8004DB5B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D35253B1C7357B4004DB5B5 /* FeedDemo-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FeedDemo-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		1D37AAE21C7C6CB3009C3844 /* APFeedDemoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APFeedDemoTableViewController.swift; sourceTree = "<group>"; };
+		1D37AAF21C7CB47E009C3844 /* FeedDemo-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "FeedDemo-Swift-Bridging-Header.h"; path = "Classes/FeedDemo-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		1D37AAF31C7CBA52009C3844 /* ApplicasterSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApplicasterSettings.plist; sourceTree = "<group>"; };
 		72AC0CC2854E708F04E13625 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		FD734CC16AB3629E1B408F00 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E95C8DF1B12EBAB9A0223736 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBA44EE0702D4649F0DDC7D7 /* libPods.a in Frameworks */,
+				65438562C744E59324E32D0E /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,7 +59,6 @@
 				1D3525271C7356A8004DB5B5 /* Products */,
 				02BAC108DE15416B9A037EB3 /* Pods */,
 				32D676B662CB1F7FA9078FC7 /* Frameworks */,
-				1D35253B1C7357B4004DB5B5 /* FeedDemo-Swift-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,10 +74,12 @@
 			isa = PBXGroup;
 			children = (
 				1D3525291C7356A8004DB5B5 /* AppDelegate.swift */,
+				1D37AAF21C7CB47E009C3844 /* FeedDemo-Swift-Bridging-Header.h */,
 				1D37AAE11C7C6CB3009C3844 /* Classes */,
 				1D35252D1C7356A8004DB5B5 /* Main.storyboard */,
 				1D3525301C7356A8004DB5B5 /* Assets.xcassets */,
 				1D3525321C7356A8004DB5B5 /* LaunchScreen.storyboard */,
+				1D37AAF31C7CBA52009C3844 /* ApplicasterSettings.plist */,
 				1D3525351C7356A8004DB5B5 /* Info.plist */,
 			);
 			path = "FeedDemo-Swift";
@@ -93,7 +96,7 @@
 		32D676B662CB1F7FA9078FC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FD734CC16AB3629E1B408F00 /* libPods.a */,
+				E95C8DF1B12EBAB9A0223736 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D37AAF41C7CBA52009C3844 /* ApplicasterSettings.plist in Resources */,
 				1D3525341C7356A8004DB5B5 /* LaunchScreen.storyboard in Resources */,
 				1D3525311C7356A8004DB5B5 /* Assets.xcassets in Resources */,
 				1D35252F1C7356A8004DB5B5 /* Main.storyboard in Resources */,
@@ -339,8 +343,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/APFeed\"/**",
 					"\"${PODS_ROOT}/Headers/Public/Applicaster\"/**",
+					"\"${PODS_ROOT}/Headers/Public/APFeed\"/**",
 					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK\"",
 					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
 					"\"${PODS_ROOT}/Headers/Public/HockeySDK\"",
@@ -349,9 +353,9 @@
 				INFOPLIST_FILE = "FeedDemo-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.applicaster.FeedDemo-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.applicaster.applicaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "FeedDemo-Swift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "FeedDemo-Swift/Classes/FeedDemo-Swift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -365,8 +369,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/APFeed\"/**",
 					"\"${PODS_ROOT}/Headers/Public/Applicaster\"/**",
+					"\"${PODS_ROOT}/Headers/Public/APFeed\"/**",
 					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK\"",
 					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
 					"\"${PODS_ROOT}/Headers/Public/HockeySDK\"",
@@ -375,9 +379,9 @@
 				INFOPLIST_FILE = "FeedDemo-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.applicaster.FeedDemo-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.applicaster.applicaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "FeedDemo-Swift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "FeedDemo-Swift/Classes/FeedDemo-Swift-Bridging-Header.h";
 			};
 			name = Release;
 		};

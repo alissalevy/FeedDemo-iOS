@@ -8,7 +8,7 @@
 
 import UIKit
 
-class APFETimelinesTableViewController: UITableViewController {
+class APFeedDemoTableViewController: UITableViewController {
 
     var timelinesArray: NSArray!
     
@@ -43,10 +43,6 @@ class APFETimelinesTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (self.timelinesArray != nil) {

@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, APApplicasterControllerDe
     var sourceApplication: NSString?
 
     let kAppSecretKey = "c02165c93cc72695ac757e957e"
-
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -30,39 +29,70 @@ class AppDelegate: UIResponder, UIApplicationDelegate, APApplicasterControllerDe
         APApplicasterController.sharedInstance().delegate = self
         APApplicasterController.sharedInstance().rootViewController = self.window?.rootViewController
         APApplicasterController.sharedInstance().load()
-
-        [[FBSDKApplicationDelegate sharedInstance] application:application
-            didFinishLaunchingWithOptions:launchOptions];
         
-        self.appLaunchURL = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
-        self.remoteLaunchInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-        self.sourceApplication = [launchOptions objectForKey:UIApplicationLaunchOptionsSourceApplicationKey];
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        if let unwrappedLaunchOptions = launchOptions {
+            self.appLaunchURL = unwrappedLaunchOptions[UIApplicationLaunchOptionsURLKey] as? NSURL
+            self.remoteLaunchInfo = unwrappedLaunchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary
+            self.sourceApplication = unwrappedLaunchOptions[UIApplicationLaunchOptionsSourceApplicationKey] as? NSString
+        }
         
         return true
     }
 
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        APApplicasterController.sharedInstance().notificationManager.registerToken(deviceToken)
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        let launchedApplication = (application.applicationState == UIApplicationState.Inactive)
+        APApplicasterController.sharedInstance().notificationManager.appDidReceiveRemoteNotification(userInfo, launchedApplication: launchedApplication)
+
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        let launchedApplication = (application.applicationState == UIApplicationState.Inactive)
+        APApplicasterController.sharedInstance().notificationManager.appDidReceiveLocalNotification(notification, launchedApplication: launchedApplication)
     }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        // If the launch URL handling is being delayed, return true.
+        if (self.appLaunchURL == nil) {
+            // The return can be used to check if Applicaster handled the URL scheme and add additional implementation
+            return APApplicasterController.sharedInstance().application(application,
+                openURL: url,
+                sourceApplication: sourceApplication,
+                annotation: annotation)
+        } else {
+            // Or other URL scheme implementation
+            return true;
+        }
     }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    // MARK: APApplicasterControllerDelegate
+    
+    func applicaster(applicaster: APApplicasterController!, loadedWithAccountID accountID: String!) {
+        if (self.appLaunchURL != nil) {
+            APApplicasterController.sharedInstance().application(UIApplication.sharedApplication(),
+                openURL: self.appLaunchURL,
+                sourceApplication: self.sourceApplication as? String,
+                annotation: nil)
+            self.appLaunchURL = nil
+        } else if (self.remoteLaunchInfo != nil) {
+            applicaster.notificationManager.appDidReceiveRemoteNotification(self.remoteLaunchInfo as! [NSObject: AnyObject],
+                launchedApplication: true)
+            self.remoteLaunchInfo = nil
+        }
+        
+        let accountsAccountId = APApplicasterController.sharedInstance().applicasterSettings["APAccountsAccountID"] as! String
+        APTimelinesManager.sharedManager().accountID = accountsAccountId
     }
-
-
+    
+    func applicaster(applicaster: APApplicasterController!, withAccountID accountID: String!, didFailLoadWithError error: NSError!) {
+        // Present a loading error in the loading view controller
+        print(error.localizedDescription)
+    }
+    
 }
 

@@ -7,17 +7,36 @@
 //
 
 import UIKit
+import FBSDKCoreKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, APApplicasterControllerDelegate {
 
     var window: UIWindow?
+    
+    // These properties will help forwarding launch information and recieved URL scheme
+    // after Applicaster Controller does it's initial loading
+    var appLaunchURL: NSURL?
+    var remoteLaunchInfo: NSDictionary?
+    var sourceApplication: NSString?
 
+    let kAppSecretKey = "c02165c93cc72695ac757e957e"
 
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        let test = APApplicasterController()
+        APApplicasterController.initSharedInstanceWithPListSettingsWithSecretKey(kAppSecretKey)
+        APApplicasterController.sharedInstance().delegate = self
+        APApplicasterController.sharedInstance().rootViewController = self.window?.rootViewController
+        APApplicasterController.sharedInstance().load()
+
+        [[FBSDKApplicationDelegate sharedInstance] application:application
+            didFinishLaunchingWithOptions:launchOptions];
+        
+        self.appLaunchURL = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
+        self.remoteLaunchInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        self.sourceApplication = [launchOptions objectForKey:UIApplicationLaunchOptionsSourceApplicationKey];
         
         return true
     }

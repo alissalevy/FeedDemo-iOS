@@ -7,40 +7,94 @@
 //
 
 #import "AppDelegate.h"
-#import <Applicaster/APApplicaster.h>
 
-@interface AppDelegate ()
+#import <Applicaster/APApplicaster.h>
+#import <Applicaster/APTimelinesManager.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
+@interface AppDelegate () <APApplicasterControllerDelegate>
+
+// These properties will help forwarding launch information and recieved URL scheme
+// after Applicaster Controller does it's initial loading
+@property (nonatomic, strong) NSURL *appLaunchURL;
+@property (nonatomic, strong) NSDictionary *remoteLaunchInfo;
+@property (nonatomic, strong) NSString *sourceApplication;
 
 @end
 
 @implementation AppDelegate
 
+static NSString *kAppSecretKey = @"c02165c93cc72695ac757e957e";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [APApplicasterController initSharedInstanceWithPListSettingsWithSecretKey:kAppSecretKey];
+    [[APApplicasterController sharedInstance] setDelegate:self];
+    [[APApplicasterController sharedInstance] setRootViewController:self.window.rootViewController];
+    [[APApplicasterController sharedInstance] load];
+    
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
+    
+    self.appLaunchURL = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
+    self.remoteLaunchInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    self.sourceApplication = [launchOptions objectForKey:UIApplicationLaunchOptionsSourceApplicationKey];
+    
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [[APApplicasterController sharedInstance].notificationManager registerToken:deviceToken];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    BOOL launchedApplication = application.applicationState == UIApplicationStateInactive;
+    [[APApplicasterController sharedInstance].notificationManager appDidReceiveRemoteNotification:userInfo launchedApplication:launchedApplication];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    BOOL launchedApplication = application.applicationState == UIApplicationStateInactive;
+    [[APApplicasterController sharedInstance].notificationManager appDidReceiveLocalNotification:notification launchedApplication:launchedApplication];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    // If the launch URL handling is being delayed, return YES.
+    if (!self.appLaunchURL) {
+        // The return can be used to check if Applicaster handled the URL scheme and add additional implementation
+        return [[APApplicasterController sharedInstance] application:application
+                                                             openURL:url
+                                                   sourceApplication:sourceApplication
+                                                          annotation:annotation];
+    } else {
+        // Or other URL scheme implementation
+        return YES;
+    }
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+#pragma mark -  APApplicasterControllerDelegate
+
+- (void)applicaster:(APApplicasterController *)applicaster loadedWithAccountID:(NSString *)accountID {
+    if (self.appLaunchURL) {
+        [[APApplicasterController sharedInstance] application:[UIApplication sharedApplication]
+                                                      openURL:self.appLaunchURL
+                                            sourceApplication:self.sourceApplication
+                                                   annotation:nil];
+        self.appLaunchURL = nil;
+    } else if (self.remoteLaunchInfo != nil) {
+        [applicaster.notificationManager appDidReceiveRemoteNotification:self.remoteLaunchInfo
+                                                     launchedApplication:YES];
+        self.remoteLaunchInfo = nil;
+    }
+    
+    NSString *accountsAccountId = [[APApplicasterController sharedInstance] applicasterSettings][@"APAccountsAccountID"];
+    [[APTimelinesManager sharedManager] setAccountID:accountsAccountId];
+}
+
+- (void)applicaster:(APApplicasterController *)applicaster withAccountID:(NSString *)accountID didFailLoadWithError:(NSError *)error {
+    // Present a loading error in the loading view controller
+    NSLog(@"%@", [error localizedDescription]);
 }
 
 @end

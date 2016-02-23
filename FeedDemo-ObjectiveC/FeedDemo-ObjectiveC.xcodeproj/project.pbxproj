@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		1D3525081C735087004DB5B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3525071C735087004DB5B5 /* main.m */; };
 		1D35250B1C735087004DB5B5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D35250A1C735087004DB5B5 /* AppDelegate.m */; };
-		1D35250E1C735087004DB5B5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D35250D1C735087004DB5B5 /* ViewController.m */; };
 		1D3525111C735087004DB5B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D35250F1C735087004DB5B5 /* Main.storyboard */; };
 		1D3525131C735087004DB5B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D3525121C735087004DB5B5 /* Assets.xcassets */; };
 		1D3525161C735087004DB5B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D3525141C735087004DB5B5 /* LaunchScreen.storyboard */; };
+		1D51C4251C74795A00692F80 /* ApplicasterSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D51C4241C74795A00692F80 /* ApplicasterSettings.plist */; };
+		1DA411A31C74956A00C76F50 /* APFeedDemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA411A21C74956A00C76F50 /* APFeedDemoTableViewController.m */; };
 		41C2FA1521E389155DB645D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E98389C63258F54C4EA8AB2E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -22,12 +23,13 @@
 		1D3525071C735087004DB5B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1D3525091C735087004DB5B5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D35250A1C735087004DB5B5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1D35250C1C735087004DB5B5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1D35250D1C735087004DB5B5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1D3525101C735087004DB5B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1D3525121C735087004DB5B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D3525151C735087004DB5B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D3525171C735087004DB5B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D51C4241C74795A00692F80 /* ApplicasterSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApplicasterSettings.plist; sourceTree = "<group>"; };
+		1DA411A11C74956A00C76F50 /* APFeedDemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APFeedDemoTableViewController.h; sourceTree = "<group>"; };
+		1DA411A21C74956A00C76F50 /* APFeedDemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APFeedDemoTableViewController.m; sourceTree = "<group>"; };
 		E98389C63258F54C4EA8AB2E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA59E1246D2ED63C7B60FC9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,11 +78,11 @@
 			children = (
 				1D3525091C735087004DB5B5 /* AppDelegate.h */,
 				1D35250A1C735087004DB5B5 /* AppDelegate.m */,
-				1D35250C1C735087004DB5B5 /* ViewController.h */,
-				1D35250D1C735087004DB5B5 /* ViewController.m */,
+				1DA411971C74905100C76F50 /* Classes */,
 				1D35250F1C735087004DB5B5 /* Main.storyboard */,
 				1D3525121C735087004DB5B5 /* Assets.xcassets */,
 				1D3525141C735087004DB5B5 /* LaunchScreen.storyboard */,
+				1D51C4241C74795A00692F80 /* ApplicasterSettings.plist */,
 				1D3525171C735087004DB5B5 /* Info.plist */,
 				1D3525061C735087004DB5B5 /* Supporting Files */,
 			);
@@ -93,6 +95,15 @@
 				1D3525071C735087004DB5B5 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1DA411971C74905100C76F50 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1DA411A11C74956A00C76F50 /* APFeedDemoTableViewController.h */,
+				1DA411A21C74956A00C76F50 /* APFeedDemoTableViewController.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		E9A4D9180A20702EC5B53B76 /* Frameworks */ = {
@@ -163,6 +174,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D51C4251C74795A00692F80 /* ApplicasterSettings.plist in Resources */,
 				1D3525161C735087004DB5B5 /* LaunchScreen.storyboard in Resources */,
 				1D3525131C735087004DB5B5 /* Assets.xcassets in Resources */,
 				1D3525111C735087004DB5B5 /* Main.storyboard in Resources */,
@@ -224,7 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D35250E1C735087004DB5B5 /* ViewController.m in Sources */,
+				1DA411A31C74956A00C76F50 /* APFeedDemoTableViewController.m in Sources */,
 				1D35250B1C735087004DB5B5 /* AppDelegate.m in Sources */,
 				1D3525081C735087004DB5B5 /* main.m in Sources */,
 			);
@@ -366,6 +378,7 @@
 					"\"${PODS_ROOT}/Headers/Public/comScore-iOS-SDK\"",
 				);
 				INFOPLIST_FILE = "FeedDemo-ObjectiveC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.applicaster.applicaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -404,6 +417,7 @@
 					"\"${PODS_ROOT}/Headers/Public/comScore-iOS-SDK\"",
 				);
 				INFOPLIST_FILE = "FeedDemo-ObjectiveC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.applicaster.applicaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";

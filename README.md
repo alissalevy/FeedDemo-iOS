@@ -1,4 +1,5 @@
-# Applicaster Feed Integration Guide Using CocoaPods (iOS)
+# Applicaster Feed Integration Guide (iOS)
+[![Build Status](https://travis-ci.org/applicaster/FeedDemo-iOS.svg?branch=master)](https://travis-ci.org/applicaster/FeedDemo-iOS)
 
 This document will explain how to intergrate Applicaster Feed to your project using CocoaPods
 Demo projects can be found on [GitHub](https://github.com/applicaster/FeedDemo-iOS)

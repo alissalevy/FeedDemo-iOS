@@ -1,11 +1,14 @@
 osx_image: xcode7.2
 language: objective-c
-before_install:
-  - git submodule update --init --recursive
-  - pod install
 script:
-  - ./FeedDemo-ObjectiveC/scripts/build.sh
-  - ./FeedDemo-Swift/scripts/build.sh
+  - pushd FeedDemo-ObjectiveC
+  - pod install
+  - ./scripts/build.sh
+  - popd
+  - pushd FeedDemo-Swift
+  - pod install
+  - ./scripts/build.sh
+  - popd
 notifications:
   slack:
     rooms:

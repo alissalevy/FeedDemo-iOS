@@ -19,8 +19,8 @@ Demo projects can be found on [GitHub](https://github.com/applicaster/FeedDemo-i
     `source 'git@github.com:applicaster/CocoaPods.git'`
 4. Add Applicaster Feed to your Podfile:  
     `pod 'APFeed'`  
-5. Using *terminal*, with your project root directory as the *working path*,  
-run: `pod install`  
+5. Using *terminal*, with your project root directory as the *working path*, run:
+    `pod install`  
 >This will download all the necessary files which are required to integrate the Applicaster Feed into your project. Visit the CocoaPods web page for more information.  
 **Notice**: CocoaPods automatically created a new Xcode workspace, open the workspace.
 
